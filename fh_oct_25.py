@@ -45,7 +45,7 @@ current_month = datetime(2025, 10, 1).strftime("%B")
 report_year = datetime(2025, 10, 1).year
 
 # Define the Google Sheets URL
-sheet_url = "https://docs.google.com/spreadsheets/d/1GWnQrLptjkgg8CR1G8OpYaCHZMmW5xOzg0kFtPCkxKw/edit?gid=0#gid=0"
+sheet_url = "https://docs.google.com/spreadsheets/d/1C5U1gFuQWmkxmm5MqZBPdzGmfIqAqi65Rp11D8l8_vA/edit?gid=1735808893#gid=1735808893"
 
 # Define the scope
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
