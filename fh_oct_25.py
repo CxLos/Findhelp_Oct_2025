@@ -26,7 +26,8 @@ from dash import dcc, html, dash_table
 import json
 import base64
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+# from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 
 # 'data/~$bmhc_data_2024_cleaned.xlsx'
 # print('System Version:', sys.version)
@@ -48,22 +49,26 @@ report_year = datetime(2025, 10, 1).year
 sheet_url = "https://docs.google.com/spreadsheets/d/1C5U1gFuQWmkxmm5MqZBPdzGmfIqAqi65Rp11D8l8_vA/edit?gid=1735808893#gid=1735808893"
 
 # Define the scope
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+scope = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
 
 # Load credentials
 encoded_key = os.getenv("GOOGLE_CREDENTIALS")
 
+# Lines 62-76 - Replace with:
+
 if encoded_key:
     json_key = json.loads(base64.b64decode(encoded_key).decode("utf-8"))
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(json_key, scope)
+    creds = Credentials.from_service_account_info(json_key, scopes=scope)  # CHANGED
 else:
     creds_path = r"C:\Users\CxLos\OneDrive\Documents\BMHC\Data\bmhc-timesheet-4808d1347240.json"
     if os.path.exists(creds_path):
-        creds = ServiceAccountCredentials.from_json_keyfile_name(creds_path, scope)
+        creds = Credentials.from_service_account_file(creds_path, scopes=scope)  # CHANGED
     else:
         raise FileNotFoundError("Service account JSON file not found and GOOGLE_CREDENTIALS is not set.")
 
-# Authorize and load the sheet
 client = gspread.authorize(creds)
 sheet = client.open_by_url(sheet_url)
 worksheet = sheet.worksheet(f"{current_month}")
@@ -2102,7 +2107,7 @@ if __name__ == '__main__':
 
 # Create venv 
 # virtualenv venv 
-# source venv/bin/activate # uses the virtualenv
+# source .venv/bin/activate
 
 # Update PIP Setup Tools:
 # pip install --upgrade pip setuptools
