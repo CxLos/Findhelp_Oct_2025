@@ -1830,30 +1830,6 @@ html.Div(
                     children=[
                         dcc.Graph(
                             className='graph',
-                            figure=housing_pie
-                        )
-                    ]
-                ),
-            ]
-        ),
-        
-        html.Div(
-            className='graph-row',
-            children=[
-                html.Div(
-                    className='graph-box',
-                    children=[
-                        dcc.Graph(
-                            className='graph',
-                            figure=status_bar
-                        )
-                    ]
-                ),
-                html.Div(
-                    className='graph-box',
-                    children=[
-                        dcc.Graph(
-                            className='graph',
                             figure=status_pie
                         )
                     ]
@@ -2006,7 +1982,7 @@ html.Div(
                     'whiteSpace': 'normal',
                     'height': 'auto',
                 },
-                style_cell_conditional=[
+                style_cell_conditional=[ #type: ignore
                     # make the index column narrow and centered
                     {'if': {'column_id': '#'},
                     'width': '20px', 'minWidth': '60px', 'maxWidth': '60px', 'textAlign': 'center'},
