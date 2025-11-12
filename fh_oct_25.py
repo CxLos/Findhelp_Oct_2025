@@ -46,7 +46,7 @@ current_month = datetime(2025, 10, 1).strftime("%B")
 report_year = datetime(2025, 10, 1).year
 
 # Define the Google Sheets URL
-sheet_url = "https://docs.google.com/spreadsheets/d/1C5U1gFuQWmkxmm5MqZBPdzGmfIqAqi65Rp11D8l8_vA/edit?gid=1735808893#gid=1735808893"
+sheet_url = "https://docs.google.com/spreadsheets/d/1GWnQrLptjkgg8CR1G8OpYaCHZMmW5xOzg0kFtPCkxKw/edit?gid=290807145#gid=290807145"
 
 # Define the scope
 scope = [
@@ -375,13 +375,6 @@ def random_date(start, end):
     return start + timedelta(days=np.random.randint(0, (end - start).days))
 
 start_date = datetime(1950, 1, 1) # Example: start date, e.g., 1950-01-01
-end_date = datetime(2000, 12, 31)
-
-def random_date(start, end):
-    return start + timedelta(days=np.random.randint(0, (end - start).days))
-
-# # Define the date range for random dates
-start_date = datetime(1950, 1, 1)
 end_date = datetime(2000, 12, 31)
 
 # # Convert 'Individual's Date of Birth:' to datetime, coercing errors to NaT
@@ -1956,8 +1949,8 @@ html.Div(
             ),
             dash_table.DataTable(
                 id='applications-table',
-                data=data,
-                columns=columns,
+                data=data, #type: ignore
+                columns=columns, #type: ignore
                 page_size=10,
                 sort_action='native',
                 filter_action='native',
